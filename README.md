@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -1259,7 +1259,7 @@
   </script>
 </body>
 </html>my-website/
-├── index.html
-├── style.css
-├── script.js
-└── 404.html
+├── <index.html></index.html>
+├── <style.css></style.css>
+├── <script.js></script.js>
+└── <404.HTML>
