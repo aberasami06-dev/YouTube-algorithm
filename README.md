@@ -1,4 +1,23 @@
-
+<YouTube Alog/>
+│
+<├── Public Website/>
+│   <├── Home/>
+│   <├── Tutorials/>
+│   <├── Reviews/>
+│   <├── YouTube Tips/>
+│   <├── Technology/>
+│   <└── About/>
+│
+<└── Admin Dashboard/>
+    <├── Dashboard/>
+    <├── Pages/>
+    <├── Posts/>
+    <├── Categories/>
+    <├── Media / Images/>
+    <├── Website Settings/>
+    <├── Navigation Menu/>
+    <├── SEO Settings/>
+    <└── Logout/>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
