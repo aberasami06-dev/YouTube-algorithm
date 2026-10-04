@@ -1,28 +1,4 @@
-YouTube-Alog/
-│
-├── index.html
-├── tutorials.html
-├── reviews.html
-├── youtube-tips.html
-├── technology.html
-├── about.html
-│
-├── css/
-│   └── style.css
-│
-├── js/
-│   └── script.js
-│
-└── admin/
-    ├── index.html
-    ├── dashboard.html
-    ├── pages.html
-    ├── posts.html
-    ├── categories.html
-    ├── media.html
-    ├── settings.html
-    ├── navigation.html
-    └── seo.html
+
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
