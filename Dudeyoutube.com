@@ -1,0 +1,1323 @@
+<404.html>
+  using: "composite"
+  steps:
+    - run: $GITHUB_ACTION_PATH/script.sh
+      shell: bashbranding:
+  icon: 'award'
+  color: 'greenruns:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.greeting }}
+    - 'foo'
+    - 'bar'runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - 'bzz'
+  entrypoint: 'main.sh'
+  post-entrypoint: 'cleanup.sh'runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  pre-entrypoint: 'setup.sh'
+  pre-if: runner.os == 'linux'
+  entrypoint: 'main.sh'runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - 'bzz'
+  pre-entrypoint: 'setup.sh'
+  entrypoint: 'main.sh'runs:
+  using: 'docker'
+  image: 'docker://debian:stretch-slim'runs:
+  using: 'docker'
+  image: 'Dockerfile'runs:
+  using: "composite"
+  steps:
+    - name: My first step
+      uses: actions/hello_world@main
+      with:
+        first_name: Mona
+        middle_name: The
+        last_name: Octocat runs:
+  using: "composite"
+  steps:
+    # Reference a specific commit
+    - uses: actions/checkout@8f4b7f84864484a7bf31766abe9204da3cbe65b3
+    # Reference the major version of a release
+    - uses: actions/checkout@v6
+    # Reference a specific version
+    - uses: actions/checkout@v6.2.0
+    # Reference a branch
+    - uses: actions/checkout@main
+    # References a subdirectory in a public GitHub repository at a specific branch, ref, or SHA
+    - uses: actions/aws/ec2@main
+    # References an action in the same repository at the running commit
+    - uses: $/.github/actions/my-action
+    # References a local action
+    - uses: ./.github/actions/my-action
+    # References a docker public registry action
+    - uses: docker://gcr.io/cloud-builders/gradle
+    # Reference a docker image published on docker hub
+    - uses: docker://alpine:3.8 <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>YouTube Algo — Master the Algorithm with Sami Abera</title>
+  
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  
+  <style>
+    :root {
+      --bg-dark: #0b0b0e;
+      --bg-card: #15151a;
+      --bg-card-hover: #1e1e26;
+      --accent-red: #ff0033;
+      --accent-red-glow: rgba(255, 0, 51, 0.35);
+      --accent-purple: #8a2be2;
+      --accent-gold: #ffd700;
+      --text-main: #f0f0f5;
+      --text-muted: #a0a0b0;
+      --border-color: #262633;
+      --success-green: #00e676;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+      padding-bottom: 70px; /* Clearance for mobile navigation bar */
+      overflow-x: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* Windows Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg-dark); }
+    ::-webkit-scrollbar-thumb { background: #262633; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--accent-red); }
+
+    /* Navigation Header */
+    header {
+      background: rgba(11, 11, 14, 0.95);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0.8rem 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-size: 1.35rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .logo span { color: var(--accent-red); }
+
+    .nav-links {
+      display: flex;
+      gap: 0.6rem;
+      list-style: none;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding: 0.2rem 0;
+    }
+
+    .nav-links::-webkit-scrollbar { display: none; }
+
+    .nav-links li button {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      font-weight: 600;
+      cursor: pointer;
+      padding: 0.6rem 0.9rem;
+      border-radius: 8px;
+      white-space: nowrap;
+      min-height: 44px;
+      display: flex;
+      align-items: center;
+      transition: all 0.2s ease;
+    }
+
+    .nav-links li button.active,
+    .nav-links li button:hover {
+      color: #fff;
+      background-color: var(--bg-card-hover);
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .btn-follow {
+      background: transparent;
+      border: 1px solid var(--accent-red);
+      color: var(--accent-red);
+      padding: 0.5rem 1.2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 40px;
+      transition: all 0.3s ease;
+    }
+
+    .btn-follow.following {
+      background: var(--accent-red);
+      color: #fff;
+      box-shadow: 0 0 12px var(--accent-red-glow);
+    }
+
+    /* Page Router Views */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem 1.2rem;
+    }
+
+    /* Hero Section with Creator Photo */
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 2rem;
+      align-items: center;
+      padding: 2.5rem 0;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 0, 51, 0.12);
+      border: 1px solid var(--accent-red);
+      color: var(--accent-red);
+      padding: 0.4rem 1.2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 .highlight-name {
+      background: linear-gradient(90deg, #fff, var(--accent-red));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+
+    .slogan {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--accent-red);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .creator-photo-container {
+      position: relative;
+      width: 100%;
+      max-width: 360px;
+      margin: 0 auto;
+    }
+
+    .creator-photo-frame {
+      width: 100%;
+      border-radius: 24px;
+      border: 2px solid var(--accent-red);
+      box-shadow: 0 0 30px var(--accent-red-glow);
+      overflow: hidden;
+      aspect-ratio: 9/16;
+      background: var(--bg-card);
+      position: relative;
+    }
+
+    .creator-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .creator-photo-badge {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      right: 16px;
+      background: rgba(15, 15, 20, 0.9);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-color);
+      padding: 0.8rem 1rem;
+      border-radius: 14px;
+      text-align: center;
+    }
+
+    .creator-photo-badge .name {
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: #fff;
+    }
+
+    .creator-photo-badge .title {
+      font-size: 0.82rem;
+      color: var(--accent-red);
+      font-weight: 600;
+    }
+
+    /* Interactive Video Masterclass Section */
+    .video-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 2rem;
+      margin: 3rem 0;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    }
+
+    .video-header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .video-header h2 {
+      font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+      margin-bottom: 0.4rem;
+    }
+
+    .video-header p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .video-player-box {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      background: #000;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      position: relative;
+      aspect-ratio: 16/9;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .video-overlay-screen {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.85) 100%);
+      padding: 1.5rem;
+      text-align: center;
+      z-index: 2;
+    }
+
+    .video-presenter-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      border: 3px solid var(--accent-red);
+      overflow: hidden;
+      margin-bottom: 1rem;
+      box-shadow: 0 0 20px var(--accent-red-glow);
+    }
+
+    .video-presenter-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .play-btn-large {
+      width: 65px;
+      height: 65px;
+      border-radius: 50%;
+      background: var(--accent-red);
+      color: #fff;
+      border: none;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 0 25px var(--accent-red-glow);
+      transition: transform 0.2s ease;
+      margin-bottom: 1rem;
+    }
+
+    .play-btn-large:hover { transform: scale(1.1); }
+
+    .video-subtitles {
+      background: rgba(0, 0, 0, 0.85);
+      border-top: 2px solid var(--accent-red);
+      padding: 0.8rem 1.2rem;
+      color: #fff;
+      font-size: clamp(0.85rem, 2vw, 1.1rem);
+      font-weight: 600;
+      text-align: center;
+      min-height: 70px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3;
+    }
+
+    .video-controls {
+      background: #111116;
+      padding: 0.6rem 1rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      z-index: 3;
+      border-top: 1px solid var(--border-color);
+    }
+
+    .video-btn {
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 1.1rem;
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+    }
+
+    .video-btn:hover { background: var(--bg-card-hover); }
+
+    .video-progress-bar {
+      flex: 1;
+      height: 6px;
+      background: #333;
+      border-radius: 10px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .video-progress-fill {
+      width: 0%;
+      height: 100%;
+      background: var(--accent-red);
+      border-radius: 10px;
+      transition: width 0.1s linear;
+    }
+
+    .audio-visualizer {
+      display: flex;
+      align-items: flex-end;
+      gap: 3px;
+      height: 20px;
+    }
+
+    .v-bar {
+      width: 3px;
+      background: var(--accent-red);
+      border-radius: 3px;
+      height: 4px;
+    }
+
+    .v-bar.animating {
+      animation: bounceBar 0.6s infinite alternate ease-in-out;
+    }
+
+    @keyframes bounceBar {
+      0% { height: 4px; }
+      100% { height: 20px; }
+    }
+
+    /* Algorithm Tips Cards */
+    .algo-section-header {
+      background: linear-gradient(135deg, rgba(255,0,51,0.12), rgba(138,43,226,0.12));
+      border: 1px solid var(--accent-red);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
+    .algo-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.2rem;
+      margin-bottom: 3rem;
+    }
+
+    .algo-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 1.5rem;
+      position: relative;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .algo-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-red);
+    }
+
+    .algo-number {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: rgba(255, 0, 51, 0.15);
+      color: var(--accent-red);
+      font-weight: 800;
+      padding: 0.2rem 0.6rem;
+      border-radius: 50px;
+      font-size: 0.8rem;
+    }
+
+    .algo-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff;
+    }
+
+    .algo-card h3 i { color: var(--accent-red); }
+
+    .algo-card p, .algo-card ul {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+    }
+
+    .algo-card ul {
+      list-style: none;
+      margin-top: 0.5rem;
+    }
+
+    .algo-card ul li {
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .algo-card ul li i { color: var(--accent-purple); font-size: 0.75rem; }
+
+    .example-box {
+      background: var(--bg-dark);
+      border-left: 3px solid var(--accent-red);
+      padding: 0.7rem 0.9rem;
+      margin-top: 0.8rem;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.88rem;
+    }
+
+    /* Mindset Box */
+    .mindset-card {
+      background: linear-gradient(135deg, var(--accent-purple), var(--accent-red));
+      border-radius: 16px;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      margin: 3rem 0;
+      color: #fff;
+      box-shadow: 0 10px 30px rgba(138, 43, 226, 0.3);
+    }
+
+    .mindset-card h2 { font-size: 1.8rem; margin-bottom: 1rem; }
+    .mindset-card p { font-size: 1.1rem; max-width: 800px; margin: 0 auto; line-height: 1.8; }
+
+    /* Advertising & Services Layout */
+    .ad-creator-banner {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .ad-creator-img {
+      width: 100px;
+      height: 100px;
+      border-radius: 16px;
+      border: 2px solid var(--accent-red);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .ad-creator-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .shorts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1.2rem;
+      margin-top: 1.5rem;
+    }
+
+    .shorts-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.4rem;
+      position: relative;
+    }
+
+    .shorts-tag {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--accent-purple);
+      color: #fff;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 50px;
+    }
+
+    /* SEO Search Chips */
+    .seo-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 1rem;
+    }
+
+    .seo-chip {
+      background: var(--bg-card-hover);
+      border: 1px solid var(--border-color);
+      padding: 0.5rem 0.9rem;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      color: var(--text-main);
+    }
+
+    /* Profile Section */
+    .profile-header {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.8rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .profile-avatar-img {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      border: 2px solid var(--accent-red);
+      overflow: hidden;
+    }
+
+    .profile-avatar-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+    }
+
+    .settings-panel {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 1.8rem;
+    }
+
+    .form-group { margin-bottom: 1.2rem; }
+    .form-group label { display: block; margin-bottom: 0.4rem; font-weight: 600; font-size: 0.9rem; }
+    .form-group input, .form-group select {
+      width: 100%;
+      padding: 0.8rem;
+      background: var(--bg-dark);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      color: #fff;
+      font-size: 0.95rem;
+      min-height: 44px;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
+      color: #fff;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 8px;
+      font-weight: 700;
+      min-height: 44px;
+      cursor: pointer;
+    }
+
+    /* Mobile Bottom Action Bar */
+    .mobile-bottom-bar {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(11, 11, 14, 0.98);
+      border-top: 1px solid var(--border-color);
+      padding: 0.6rem 1rem;
+      z-index: 999;
+      justify-content: space-around;
+      align-items: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .mobile-bar-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 0.75rem;
+      gap: 4px;
+      cursor: pointer;
+    }
+
+    .mobile-bar-btn i { font-size: 1.2rem; }
+    .mobile-bar-btn.active { color: var(--accent-red); }
+
+    /* Responsive Controls */
+    @media (max-width: 820px) {
+      .hero { grid-template-columns: 1fr; text-align: center; }
+      .hero-badge { margin: 0 auto 1rem; }
+      .creator-photo-container { max-width: 280px; }
+      .header-actions { display: none; }
+      .mobile-bottom-bar { display: flex; }
+      .video-section { padding: 1.2rem 0.8rem; }
+    }
+
+    /* Footer */
+    footer {
+      background: #060608;
+      border-top: 1px solid var(--border-color);
+      padding: 2.5rem 1rem;
+      margin-top: 3rem;
+      text-align: center;
+      color: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header & Navigation -->
+  <header>
+    <nav>
+      <div class="logo" onclick="switchTab('home')">
+        <i class="fa-brands fa-youtube" style="color: var(--accent-red);"></i>
+        YouTube <span>Algo</span>
+      </div>
+      <ul class="nav-links">
+        <li><button id="nav-home" class="active" onclick="switchTab('home')">Home</button></li>
+        <li><button id="nav-advertising" onclick="switchTab('advertising')">Advertising & Strategy</button></li>
+        <li><button id="nav-profile" onclick="switchTab('profile')">Profile Page</button></li>
+      </ul>
+      <div class="header-actions">
+        <button class="btn-follow" id="followBtn" onclick="toggleFollow()">
+          <i class="fa-solid fa-user-plus"></i> <span id="followText">Follow Sami</span>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- HOME PAGE -->
+  <div id="page-home" class="page active">
+    <div class="container">
+      
+      <!-- HERO SECTION -->
+      <section class="hero">
+        <div>
+          <div class="hero-badge">
+            <i class="fa-solid fa-certificate"></i> Official Guide by Sami Abera
+          </div>
+          <h1>
+            Master YouTube Algorithms with <br>
+            <span class="highlight-name">Sami Abera</span>
+          </h1>
+          <p>
+            Welcome to YouTube Algo! Designed specifically for creators who want to understand how YouTube recommends videos, increase subscriber engagement, and grow organic traffic.
+          </p>
+          <div class="slogan">Learn. Create. Improve. Grow.</div>
+
+          <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; margin-top: 1.5rem;">
+            <button class="btn-follow" id="likeBtn" onclick="toggleLike()" style="border-color: var(--border-color); color: #fff;">
+              <i class="fa-solid fa-thumbs-up"></i> <span id="likeCount">2,840</span> Likes
+            </button>
+            <button class="btn-follow" onclick="sharePlatform()" style="border-color: var(--border-color); color: #fff;">
+              <i class="fa-solid fa-share-nodes"></i> Share Masterclass
+            </button>
+          </div>
+        </div>
+
+        <!-- Creator Photo Highlight #1 -->
+        <div class="creator-photo-container">
+          <div class="creator-photo-frame">
+            <img src="1000007398_c0c85a.jpg" alt="Sami Abera - YouTube Algo Founder" id="heroPhoto" />
+            <div class="creator-photo-badge">
+              <div class="name">Sami Abera</div>
+              <div class="title">Founder & YouTube Growth Strategist</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- INTERACTIVE VIDEO MASTERCLASS SECTION -->
+      <section class="video-section">
+        <div class="video-header">
+          <span style="color: var(--accent-red); font-weight: 700; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px;">
+            <i class="fa-solid fa-circle-play"></i> Featured Video Masterclass
+          </span>
+          <h2>How YouTube Recommendations Work in 2026</h2>
+          <p>Presented by <strong>Sami Abera</strong> — Click play to watch the interactive masterclass!</p>
+        </div>
+
+        <div class="video-player-box">
+          <!-- Screen Overlay when paused -->
+          <div class="video-overlay-screen" id="videoOverlay">
+            <div class="video-presenter-avatar">
+              <img src="1000007398_c0c85a.jpg" alt="Sami Abera Video Presenter" />
+            </div>
+            <button class="play-btn-large" onclick="toggleVideoPlay()">
+              <i class="fa-solid fa-play" id="overlayPlayIcon"></i>
+            </button>
+            <h3 style="color: #fff; font-size: 1.2rem; margin-bottom: 0.2rem;">Masterclass Narration by Sami Abera</h3>
+            <p style="color: var(--text-muted); font-size: 0.88rem;">Press play for audio voiceover & caption sync</p>
+          </div>
+
+          <!-- Captions Container -->
+          <div class="video-subtitles" id="subtitlesBox">
+            "Welcome creators! I'm Sami Abera, and today we are demystifying the YouTube Algorithm."
+          </div>
+
+          <!-- Controls Bar -->
+          <div class="video-controls">
+            <button class="video-btn" onclick="toggleVideoPlay()">
+              <i class="fa-solid fa-play" id="playIcon"></i>
+            </button>
+            
+            <div class="video-progress-bar" onclick="seekVideo(event)">
+              <div class="video-fill video-progress-fill" id="progressFill"></div>
+            </div>
+
+            <div class="audio-visualizer" id="visualizer">
+              <div class="v-bar"></div>
+              <div class="v-bar"></div>
+              <div class="v-bar"></div>
+              <div class="v-bar"></div>
+            </div>
+
+            <button class="video-btn" onclick="toggleMute()" title="Toggle Mute">
+              <i class="fa-solid fa-volume-high" id="volumeIcon"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHAT IS THE YOUTUBE ALGORITHM SECTION -->
+      <div class="algo-section-header">
+        <h2 style="font-size: clamp(1.5rem, 4vw, 2.2rem); color: #fff; margin-bottom: 0.5rem;">What Is the YouTube Algorithm?</h2>
+        <p style="color: var(--text-muted); max-width: 800px; margin: 0 auto; font-size: 1rem;">
+          The YouTube algorithm is a collection of recommendation systems that decide which videos to show to viewers, where to show them, and when to show them. As <strong>Sami Abera</strong> emphasizes: YouTube matches viewers with videos they are likely to enjoy.
+        </p>
+      </div>
+
+      <!-- 14 ALGORITHM TIPS GRID -->
+      <div class="algo-grid">
+
+        <!-- Tip 1 -->
+        <div class="algo-card">
+          <span class="algo-number">Tip #1</span>
+          <h3><i class="fa-solid fa-eye"></i> Recommendation Signals</h3>
+          <p>YouTube evaluates viewer history, search queries, clicked videos, watch duration, and feedback (likes, dislikes, 'Not interested').</p>
+          <div class="example-box">
+            <strong>Sami Abera Example:</strong> Uploading <em>“5 Easy Ways to Get More Views”</em> tests initial audience response before expanding reach.
+          </div>
+        </div>
+
+        <!-- Tip 2 -->
+        <div class="algo-card">
+          <span class="algo-number">Tip #2</span>
+          <h3><i class="fa-solid fa-diagram-project"></i> Multiple Systems</h3>
+          <p>YouTube does not have just ONE algorithm. Different features serve specialized recommendation goals:</p>
+          <ul>
+            <li><i class="fa-solid fa-circle"></i> <strong>Home Page:</strong> Personal history & interests</li>
+            <li><i class="fa-solid fa-circle"></i> <strong>Search:</strong> Keyword relevance & query intent</li>
+            <li><i class="fa-solid fa-circle"></i> <strong>Suggested:</strong> Logical next video recommendation</li>
+            <li><i class="fa-solid fa-circle"></i> <strong>Shorts:</strong> Rapid discovery feed</li>
+          </ul>
+        </div>
+
+        <!-- Tip 3 -->
+        <div class="algo-card">
+          <span class="algo-number">Tip #3</span>
+          <h3><i class="fa-solid fa-face-smile"></i> Viewer Satisfaction</h3>
+          <p>Never try to "trick" the system. Focus on whether the viewer clicks, stays, and derives value from your video.</p>
+        </div>
+
+        <!-- Tip 4 -->
+        <div class="algo-card">
+          <span class="algo-number">Tip #4</span>
+          <h3><i class="fa-solid fa-arrow-pointer"></i> Click-Through Rate (CTR)</h3>
+          <p>The percentage of people who click after seeing your thumbnail + title.</p>
+          <div class="example-box">
+            <strong>Formula:</strong> 100 clicks ÷ 1,000 impressions × 100 = <strong>10% CTR</strong>
+          </div>
+        </div>
+
+        <!-- Tip 5 -->
+        <div class="algo-card">
+          <span class="algo-number">Tip #5</span>
+          <h3><i class="fa-solid fa-clock"></i> Total Watch Time</h3>
+          <p>The cumulative time viewers spend watching your content. High watch duration signals valuable content to the system.</p>
+        </div>
+
+        <!-- Tip 6 -->
+        <div class="algo-card">
+          <span class="algo-number">Tip #6</span>
+          <h3><i class="fa-solid fa-chart-line"></i> Audience Retention</h3>
+          <p>Retention charts highlight exactly where viewers stay and where they leave your video.</p>
+        </div>
+
+        <!-- Tip 7 -->
+        <div class="algo-card">
+          <span class="algo-number">Tip #7</span>
+          <h3><i class="fa-solid fa-bolt"></i> The First 30 Seconds</h3>
+          <p>Immediately answer what the video is about and why viewers should stay. Skip long, generic channel intro sequences.</p>
+        </div>
+
+        <!-- Tip 8 -->
+        <div class="algo-card">
+          <span class="algo-number">Tip #8</span>
+          <h3><i class="fa-solid fa-image"></i> Thumbnail + Title = Entrance</h3>
+          <p>Pair clear titles with high-contrast thumbnails without using deceptive clickbait.</p>
+          <div class="example-box">
+            <strong>Recommended:</strong> <em>“7 YouTube Mistakes Killing Your Views”</em>
+          </div>
+        </div>
+
+        <!-- Tip 9 -->
+        <div class="algo-card">
+          <span class="algo-number">Tip #9</span>
+          <h3><i class="fa-solid fa-magnifying-glass"></i> Keywords & SEO</h3>
+          <p>Communicate your topic clearly through your Title, Description, and Spoken Words.</p>
+        </div>
+
+        <!-- Tip 10 -->
+        <div class="algo-card">
+          <span class="algo-number">Tip #10</span>
+          <h3><i class="fa-solid fa-users"></i> Subscribers ≠ Automatic Views</h3>
+          <p>Having 10,000 subscribers doesn't guarantee 10,000 views. YouTube distributes content based on real-time interest.</p>
+        </div>
+
+        <!-- Tip 11 -->
+        <div class="algo-card">
+          <span class="algo-number">Tip #11</span>
+          <h3><i class="fa-solid fa-share-nodes"></i> Post-Publish Testing</h3>
+          <p>Publish → Topic Indexing → Audience Sampling → Signal Evaluation → Distribution Expansion.</p>
+        </div>
+
+        <!-- Tip 12 -->
+        <div class="algo-card">
+          <span class="algo-number">Tip #12</span>
+          <h3><i class="fa-solid fa-fire"></i> Why Videos Go Viral</h3>
+          <p>Viral videos pair high-demand topics, click-worthy packaging, high retention, and high audience satisfaction.</p>
+        </div>
+
+        <!-- Tip 13 -->
+        <div class="algo-card">
+          <span class="algo-number">Tip #13</span>
+          <h3><i class="fa-solid fa-sliders"></i> Algorithm vs. SEO</h3>
+          <p><strong>SEO:</strong> Helps people find you in Search.<br><strong>Recommendations:</strong> Helps YouTube suggest what to watch next.</p>
+        </div>
+
+        <!-- Tip 14 -->
+        <div class="algo-card">
+          <span class="algo-number">Tip #14</span>
+          <h3><i class="fa-solid fa-graduation-cap"></i> 5 Core Areas to Study</h3>
+          <ul>
+            <li><i class="fa-solid fa-check"></i> 1. Discovery Traffic Sources</li>
+            <li><i class="fa-solid fa-check"></i> 2. Content Packaging (Title/Thumbnail)</li>
+            <li><i class="fa-solid fa-check"></i> 3. Viewer Retention Metrics</li>
+            <li><i class="fa-solid fa-check"></i> 4. Audience Satisfaction Signals</li>
+            <li><i class="fa-solid fa-check"></i> 5. Analytics Pattern Recognition</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <!-- GOLDEN CREATOR MINDSET BANNER -->
+      <div class="mindset-card">
+        <h2>💡 Sami Abera's Golden Creator Rule</h2>
+        <p>Don't ask: <strong>“How can I make YouTube's algorithm promote my video?”</strong><br><br>Ask: <strong>“How can I make a video that the right audience wants to click, watch, enjoy, and watch more of?”</strong></p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ADVERTISING & SERVICES PAGE -->
+  <div id="page-advertising" class="page">
+    <div class="container">
+      
+      <!-- Creator Photo Highlight #2 -->
+      <div class="ad-creator-banner">
+        <div class="ad-creator-img">
+          <img src="1000007398_c0c85a.jpg" alt="Sami Abera Advertising Blueprint" />
+        </div>
+        <div>
+          <h2 style="font-size: 1.5rem; margin-bottom: 0.3rem;">Sami Abera's Advertising & Promotion Blueprint</h2>
+          <p style="color: var(--text-muted); font-size: 0.92rem;">Cross-platform content distribution, YouTube Shorts blueprints, search keyword targets, and paid scaling strategy.</p>
+        </div>
+      </div>
+
+      <!-- Shorts Concept Ideas -->
+      <h3 style="color: var(--accent-red); margin-bottom: 1rem;"><i class="fa-solid fa-clapperboard"></i> YouTube Shorts Content Strategy (20–40 Seconds)</h3>
+      <p style="color: var(--text-muted); margin-bottom: 1rem; font-size: 0.9rem;">
+        As recommended by <strong>Sami Abera</strong>, publish quick Shorts and include your website name in video captions and pinned comments:
+      </p>
+
+      <div class="shorts-grid">
+        <div class="shorts-card">
+          <span class="shorts-tag">Short #1</span>
+          <h4 style="margin-top: 0.8rem; margin-bottom: 0.5rem;">"3 Algorithm Mistakes Killing Your Views"</h4>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Focus on weak opening hooks, ignoring CTR, and improper upload tags.</p>
+        </div>
+        <div class="shorts-card">
+          <span class="shorts-tag">Short #2</span>
+          <h4 style="margin-top: 0.8rem; margin-bottom: 0.5rem;">"How YouTube Recommends Videos in 2026"</h4>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Explain watch duration, click behavior, and viewer satisfaction signals.</p>
+        </div>
+        <div class="shorts-card">
+          <span class="shorts-tag">Short #3</span>
+          <h4 style="margin-top: 0.8rem; margin-bottom: 0.5rem;">"5 Upload Steps Before Clicking Publish"</h4>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Audit thumbnail contrast, title keywords, chapters, and end screens.</p>
+        </div>
+        <div class="shorts-card">
+          <span class="shorts-tag">Short #4</span>
+          <h4 style="margin-top: 0.8rem; margin-bottom: 0.5rem;">"High Impressions but Low Views?"</h4>
+          <p style="font-size: 0.85rem; color: var(--text-muted);">Diagnose low CTR thumbnail designs and weak title hooks with Sami Abera's guide.</p>
+        </div>
+      </div>
+
+      <!-- Multi-Channel Strategy -->
+      <div style="margin-top: 2.5rem; background: var(--bg-card); padding: 1.5rem; border-radius: 14px; border: 1px solid var(--border-color);">
+        <h3 style="color: var(--accent-purple); margin-bottom: 1rem; font-size: 1.2rem;"><i class="fa-solid fa-share-nodes"></i> Multi-Channel Growth Strategy</h3>
+        <ul style="list-style: none; color: var(--text-muted); font-size: 0.92rem;">
+          <li style="margin-bottom: 1rem;"><strong>Facebook:</strong> Share actionable tips directly in posts. Provide value first, then invite readers: <em>"Learn the full strategy on YouTube Algo with Sami Abera."</em></li>
+          <li style="margin-bottom: 1rem;"><strong>TikTok / Instagram Reels:</strong> Turn each written article into 5–10 short bite-sized videos highlighting key takeaways.</li>
+          <li style="margin-bottom: 1rem;"><strong>Google Search / SEO Target Keywords:</strong> Write content targeting key search queries:</li>
+        </ul>
+
+        <div class="seo-list">
+          <span class="seo-chip">Sami Abera YouTube Algo</span>
+          <span class="seo-chip">How does YouTube algorithm work?</span>
+          <span class="seo-chip">How to get more YouTube views</span>
+          <span class="seo-chip">How to increase YouTube subscribers</span>
+          <span class="seo-chip">YouTube SEO for beginners</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROFILE PAGE -->
+  <div id="page-profile" class="page">
+    <div class="container">
+      
+      <!-- Creator Photo Highlight #3 -->
+      <div class="profile-header">
+        <div class="profile-avatar-img">
+          <img src="1000007398_c0c85a.jpg" alt="Sami Abera Profile" />
+        </div>
+        <div>
+          <h2 style="font-size: 1.4rem;">Sami Abera</h2>
+          <p style="color: var(--text-muted); font-size: 0.9rem;">Lead Strategist & Creator @ YouTube Algo</p>
+        </div>
+      </div>
+
+      <div class="settings-panel">
+        <h3 style="margin-bottom: 1.2rem; font-size: 1.2rem;">Account Customization & Settings</h3>
+        <div class="form-group">
+          <label>Profile Display Name</label>
+          <input type="text" value="Sami Abera" />
+        </div>
+        <div class="form-group">
+          <label>Your YouTube Channel URL</label>
+          <input type="text" placeholder="https://youtube.com/@samiabera" />
+        </div>
+        <div class="form-group">
+          <label>AdSense Payment Method</label>
+          <select>
+            <option>EFT Direct Deposit</option>
+            <option>Wire Transfer</option>
+            <option>PayPal Account</option>
+          </select>
+        </div>
+        <button class="btn-submit" style="max-width: 220px;" onclick="alert('Profile updated successfully!')">Save Profile Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Android Bottom Navigation Bar -->
+  <div class="mobile-bottom-bar">
+    <button class="mobile-bar-btn active" id="mbar-home" onclick="switchTab('home')">
+      <i class="fa-solid fa-house"></i> Home
+    </button>
+    <button class="mobile-bar-btn" id="mbar-advertising" onclick="switchTab('advertising')">
+      <i class="fa-solid fa-bullhorn"></i> Ads Strategy
+    </button>
+    <button class="mobile-bar-btn" id="mbar-profile" onclick="switchTab('profile')">
+      <i class="fa-solid fa-user"></i> Profile
+    </button>
+    <button class="mobile-bar-btn" onclick="toggleFollow()">
+      <i class="fa-solid fa-user-plus"></i> <span id="mbar-follow">Follow</span>
+    </button>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 YouTube Algo — Founded by <strong>Sami Abera</strong>. All rights reserved.</p>
+    <p style="font-size: 0.85rem; margin-top: 0.5rem;">Learn. Create. Improve. Grow.</p>
+  </footer>
+
+  <script>
+    // Tab Navigation Switcher
+    function switchTab(tabName) {
+      document.querySelectorAll('.page').forEach(page => page.classList.remove('active'));
+      document.querySelectorAll('.nav-links button').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.mobile-bar-btn').forEach(btn => btn.classList.remove('active'));
+      
+      document.getElementById('page-' + tabName).classList.add('active');
+      
+      const navBtn = document.getElementById('nav-' + tabName);
+      if(navBtn) navBtn.classList.add('active');
+
+      const mbarBtn = document.getElementById('mbar-' + tabName);
+      if(mbarBtn) mbarBtn.classList.add('active');
+      
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Interactive Masterclass Narration Script mentioning Sami Abera 3 times
+    const masterclassScript = [
+      { time: 0, text: "Welcome creators! I'm Sami Abera, founder of YouTube Algo." },
+      { time: 4, text: "Today we are learning how the YouTube recommendation system actually works." },
+      { time: 8, text: "Rule number 1: YouTube doesn't recommend videos based on subscriber counts alone." },
+      { time: 13, text: "It looks at Click-Through Rate, watch retention, and viewer satisfaction signals." },
+      { time: 18, text: "Follow Sami Abera's 14 tips below to optimize your thumbnails and hooks." },
+      { time: 23, text: "Focus on creating content the right audience wants to click, watch, and enjoy!" }
+    ];
+
+    let isPlaying = false;
+    let isMuted = false;
+    let videoProgress = 0;
+    let videoTimer = null;
+    const totalDuration = 28; // seconds
+
+    function toggleVideoPlay() {
+      const overlay = document.getElementById('videoOverlay');
+      const playIcon = document.getElementById('playIcon');
+      const visualizerBars = document.querySelectorAll('.v-bar');
+
+      if (!isPlaying) {
+        isPlaying = true;
+        overlay.style.display = 'none';
+        playIcon.className = 'fa-solid fa-pause';
+        
+        visualizerBars.forEach(bar => bar.classList.add('animating'));
+
+        // Speech synthesis audio narration
+        speakCurrentSubtitle();
+
+        videoTimer = setInterval(() => {
+          videoProgress += 0.5;
+          const percentage = (videoProgress / totalDuration) * 100;
+          document.getElementById('progressFill').style.width = percentage + '%';
+
+          // Update subtitle text based on time
+          const currentCaption = masterclassScript.reduce((prev, curr) => {
+            return (videoProgress >= curr.time) ? curr : prev;
+          });
+          
+          const subtitlesBox = document.getElementById('subtitlesBox');
+          if (subtitlesBox.textContent !== `"${currentCaption.text}"`) {
+            subtitlesBox.textContent = `"${currentCaption.text}"`;
+            if(!isMuted) speakText(currentCaption.text);
+          }
+
+          if (videoProgress >= totalDuration) {
+            resetVideo();
+          }
+        }, 500);
+
+      } else {
+        pauseVideo();
+      }
+    }
+
+    function pauseVideo() {
+      isPlaying = false;
+      document.getElementById('playIcon').className = 'fa-solid fa-play';
+      document.querySelectorAll('.v-bar').forEach(bar => bar.classList.remove('animating'));
+      clearInterval(videoTimer);
+      if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    }
+
+    function resetVideo() {
+      pauseVideo();
+      videoProgress = 0;
+      document.getElementById('progressFill').style.width = '0%';
+      document.getElementById('videoOverlay').style.display = 'flex';
+      document.getElementById('subtitlesBox').textContent = `"Welcome creators! I'm Sami Abera, and today we are demystifying the YouTube Algorithm."`;
+    }
+
+    function seekVideo(e) {
+      const bar = e.currentTarget;
+      const clickPosition = (e.clientX - bar.getBoundingClientRect().left) / bar.offsetWidth;
+      videoProgress = clickPosition * totalDuration;
+      document.getElementById('progressFill').style.width = (clickPosition * 100) + '%';
+      if (isPlaying) {
+        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+        speakCurrentSubtitle();
+      }
+    }
+
+    function speakCurrentSubtitle() {
+      const currentCaption = masterclassScript.reduce((prev, curr) => {
+        return (videoProgress >= curr.time) ? curr : prev;
+      });
+      if (!isMuted) speakText(currentCaption.text);
+    }
+
+    function speakText(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 1.0;
+        utterance.pitch = 1.0;
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
+    function toggleMute() {
+      isMuted = !isMuted;
+      document.getElementById('volumeIcon').className = isMuted ? 'fa-solid fa-volume-xmark' : 'fa-solid fa-volume-high';
+      if (isMuted && 'speechSynthesis' in window) window.speechSynthesis.cancel();
+    }
+
+    // Like Interaction Logic
+    let isLiked = false;
+    let likes = 2840;
+    function toggleLike() {
+      const likeBtn = document.getElementById('likeBtn');
+      const likeCount = document.getElementById('likeCount');
+      if (!isLiked) {
+        likes++;
+        likeBtn.style.borderColor = 'var(--accent-red)';
+        likeBtn.style.color = 'var(--accent-red)';
+        isLiked = true;
+      } else {
+        likes--;
+        likeBtn.style.borderColor = 'var(--border-color)';
+        likeBtn.style.color = '#fff';
+        isLiked = false;
+      }
+      likeCount.textContent = likes.toLocaleString();
+    }
+
+    // Follow Interaction Logic
+    let isFollowing = false;
+    function toggleFollow() {
+      const followBtn = document.getElementById('followBtn');
+      const followText = document.getElementById('followText');
+      const mbarFollow = document.getElementById('mbar-follow');
+      
+      if (!isFollowing) {
+        if(followText) followText.textContent = 'Following Sami';
+        if(mbarFollow) mbarFollow.textContent = 'Following';
+        if(followBtn) followBtn.classList.add('following');
+        isFollowing = true;
+      } else {
+        if(followText) followText.textContent = 'Follow Sami';
+        if(mbarFollow) mbarFollow.textContent = 'Follow';
+        if(followBtn) followBtn.classList.remove('following');
+        isFollowing = false;
+      }
+    }
+
+    // Native Web Share API
+    function sharePlatform() {
+      if (navigator.share) {
+        navigator.share({ title: 'YouTube Algo - Sami Abera', url: window.location.href });
+      } else {
+        alert('YouTube Algo link by Sami Abera copied to clipboard!');
+      }
+    }
+  </script>
+</body>
+</html>my-website/
+├── <index.html></index.html>
+├── <style.css></style.css>
+├── <script.js></script.js>
+└── <404.HTML>
