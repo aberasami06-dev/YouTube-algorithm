@@ -1,4 +1,45 @@
- runs:
+<404.html>runs:
+  using: "composite"
+  steps:
+    - run: $GITHUB_ACTION_PATH/script.sh
+      shell: bashbranding:
+  icon: 'award'
+  color: 'greenruns:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.greeting }}
+    - 'foo'
+    - 'bar'runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - 'bzz'
+  entrypoint: 'main.sh'
+  post-entrypoint: 'cleanup.sh'runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  pre-entrypoint: 'setup.sh'
+  pre-if: runner.os == 'linux'
+  entrypoint: 'main.sh'runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - 'bzz'
+  pre-entrypoint: 'setup.sh'
+  entrypoint: 'main.sh'runs:
+  using: 'docker'
+  image: 'docker://debian:stretch-slim'runs:
+  using: 'docker'
+  image: 'Dockerfile'runs:
+  using: "composite"
+  steps:
+    - name: My first step
+      uses: actions/hello_world@main
+      with:
+        first_name: Mona
+        middle_name: The
+        last_name: Octocat runs:
   using: "composite"
   steps:
     # Reference a specific commit
