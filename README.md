@@ -1,4 +1,24 @@
-  <meta charset="UTF-8" />
+ runs:
+  using: "composite"
+  steps:
+    # Reference a specific commit
+    - uses: actions/checkout@8f4b7f84864484a7bf31766abe9204da3cbe65b3
+    # Reference the major version of a release
+    - uses: actions/checkout@v6
+    # Reference a specific version
+    - uses: actions/checkout@v6.2.0
+    # Reference a branch
+    - uses: actions/checkout@main
+    # References a subdirectory in a public GitHub repository at a specific branch, ref, or SHA
+    - uses: actions/aws/ec2@main
+    # References an action in the same repository at the running commit
+    - uses: $/.github/actions/my-action
+    # References a local action
+    - uses: ./.github/actions/my-action
+    # References a docker public registry action
+    - uses: docker://gcr.io/cloud-builders/gradle
+    # Reference a docker image published on docker hub
+    - uses: docker://alpine:3.8 <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <title>YouTube Algo — Master the Algorithm with Sami Abera</title>
   
