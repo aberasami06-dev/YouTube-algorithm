@@ -1,4 +1,4 @@
-<404.html>runs:
+<404.html>
   using: "composite"
   steps:
     - run: $GITHUB_ACTION_PATH/script.sh
