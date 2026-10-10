@@ -1,4 +1,4 @@
-<404.html>
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3b68b109-9478-4c5f-8c66-37e8779e3f60/deploy-status)](https://app.netlify.com/projects/dudyoutube/deploys)<404.html>
   using: "composite"
   steps:
     - run: $GITHUB_ACTION_PATH/script.sh
