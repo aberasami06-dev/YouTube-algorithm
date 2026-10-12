@@ -202,54 +202,6 @@
       margin-bottom: 1.5rem;
     }
 
-    .creator-photo-container {
-      position: relative;
-      width: 100%;
-      max-width: 360px;
-      margin: 0 auto;
-    }
-
-    .creator-photo-frame {
-      width: 100%;
-      border-radius: 24px;
-      border: 2px solid var(--accent-red);
-      box-shadow: 0 0 30px var(--accent-red-glow);
-      overflow: hidden;
-      aspect-ratio: 9/16;
-      background: var(--bg-card);
-      position: relative;
-    }
-
-    .creator-photo-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: top center;
-    }
-
-    .creator-photo-badge {
-      position: absolute;
-      bottom: 16px;
-      left: 16px;
-      right: 16px;
-      background: rgba(15, 15, 20, 0.9);
-      backdrop-filter: blur(10px);
-      border: 1px solid var(--border-color);
-      padding: 0.8rem 1rem;
-      border-radius: 14px;
-      text-align: center;
-    }
-
-    .creator-photo-badge .name {
-      font-weight: 800;
-      font-size: 1.1rem;
-      color: #fff;
-    }
-
-    .creator-photo-badge .title {
-      font-size: 0.82rem;
-      color: var(--accent-red);
-      font-weight: 600;
     }
 
     /* Interactive Video Masterclass Section */
@@ -1069,8 +1021,6 @@
     <button class="mobile-bar-btn" id="mbar-advertising" onclick="switchTab('advertising')">
       <i class="fa-solid fa-bullhorn"></i> Ads Strategy
     </button>
-    <button class="mobile-bar-btn" id="mbar-profile" onclick="switchTab('profile')">
-      <i class="fa-solid fa-user"></i> Profile
     </button>
     <button class="mobile-bar-btn" onclick="toggleFollow()">
       <i class="fa-solid fa-user-plus"></i> <span id="mbar-follow">Follow</span>
@@ -1257,5 +1207,423 @@
       }
     }
   </script>
+</body>
+</html>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Algo - Algorithm Insights & Creator Growth</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-red: #FF0000;
+            --dark-red: #CC0000;
+            --bg-dark: #0F0F0F;
+            --card-bg: #1F1F1F;
+            --text-main: #F1F1F1;
+            --text-muted: #AAA;
+            --border-color: #333;
+            --accent-blue: #3EA6FF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* --- Header & Navigation --- */
+        header {
+            background-color: rgba(15, 15, 15, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #fff;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo span {
+            color: var(--primary-red);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+            cursor: pointer;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #fff;
+        }
+
+        /* --- Main Content Area --- */
+        main {
+            flex: 1;
+            max-width: 900px;
+            width: 100%;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .page-section {
+            display: none;
+            background-color: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .page-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #fff;
+            border-bottom: 2px solid var(--primary-red);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        h2, h3 {
+            color: #fff;
+            margin: 1.5rem 0 0.75rem 0;
+            font-weight: 600;
+        }
+
+        p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        a.text-link {
+            color: var(--accent-blue);
+            text-decoration: none;
+        }
+
+        a.text-link:hover {
+            text-decoration: underline;
+        }
+
+        /* --- Contact Form Styles --- */
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-top: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            background-color: var(--bg-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 0.8rem;
+            color: #fff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent-blue);
+        }
+
+        .submit-btn {
+            background-color: var(--primary-red);
+            color: #fff;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            align-self: flex-start;
+            transition: background-color 0.2s;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--dark-red);
+        }
+
+        .contact-info-box {
+            background-color: var(--bg-dark);
+            padding: 1.2rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            margin-top: 2rem;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background-color: #050505;
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 1.5rem;
+            margin-top: auto;
+        }
+
+        .footer-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .footer-brand {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .footer-nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+            cursor: pointer;
+        }
+
+        .footer-nav a:hover {
+            color: #fff;
+        }
+
+        /* Responsive Mobile Layout */
+        @media (max-width: 600px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .footer-container {
+                flex-direction: column;
+                text-align: center;
+            }
+            .page-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo" onclick="showPage('about')">
+                ▶ YouTube <span>Algo</span>
+            </a>
+            <ul class="nav-links">
+                <li><a onclick="showPage('about')" id="nav-about" class="active">About Us</a></li>
+                <li><a onclick="showPage('contact')" id="nav-contact">Contact Us</a></li>
+                <li><a onclick="showPage('terms')" id="nav-terms">Terms & Disclaimer</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main>
+        
+        <!-- Page 1: About Us -->
+        <section id="about" class="page-section active">
+            <h1>About Us</h1>
+            <p>Welcome to <strong>YouTube Algo</strong> — your ultimate destination for mastering the YouTube algorithm, growing your audience, and building a sustainable content creation journey.</p>
+            
+            <h3>Our Mission</h3>
+            <p>At YouTube Algo, our mission is to demystify how YouTube recommends, ranks, and distributes content. We empower creators of all sizes — from beginners launching their first channel to seasoned creators looking to scale — with data-driven insights, algorithm updates, actionable strategies, and practical tools.</p>
+            
+            <h3>What We Offer</h3>
+            <ul>
+                <li><strong>Algorithm Insights:</strong> Clear breakdowns of YouTube algorithm updates, recommendation system signals, and ranking factors.</li>
+                <li><strong>Growth Strategies:</strong> Proven tactics for improving Click-Through Rate (CTR), Average Percentage Viewed (APV), audience retention, and thumbnail design.</li>
+                <li><strong>Tools & Resources:</strong> Checklists, templates, and guides designed to streamline your video planning, SEO, and optimization workflow.</li>
+            </ul>
+
+            <h3>Why Trust Us?</h3>
+            <p>The online video landscape is constantly changing. We continuously analyze platform trends, official YouTube creator updates, and real-world channel performance data to bring you clear, honest, and actionable advice — no fluff or growth hacks that get your channel penalized.</p>
+            
+            <p>Have questions or feedback? Feel free to reach out to us via our <a onclick="showPage('contact')" class="text-link" style="cursor:pointer;">Contact Us</a> page!</p>
+        </section>
+
+        <!-- Page 2: Contact Us -->
+        <section id="contact" class="page-section">
+            <h1>Contact Us</h1>
+            <p>Have a question about our content, feedback on our tools, or a business inquiry? We’d love to hear from you!</p>
+            
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('Thank you for your message! We will get back to you shortly.');">
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+                    <input type="text" id="name" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Your Email Address</label>
+                    <input type="email" id="email" placeholder="john@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" placeholder="General Inquiry / Business Request" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" rows="5" placeholder="Type your message here..." required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+
+            <div class="contact-info-box">
+                <h3>Direct Inquiries</h3>
+                <p><strong>General Support:</strong> <a href="mailto:support@youtubealgo.com" class="text-link">support@youtubealgo.com</a></p>
+                <p><strong>Business & Partnerships:</strong> <a href="mailto:business@youtubealgo.com" class="text-link">business@youtubealgo.com</a></p>
+                <p style="font-size:0.85rem; margin-top:0.5rem;"><em>Response Time: We aim to respond within 24 to 48 hours (Monday – Friday).</em></p>
+            </div>
+        </section>
+
+        <!-- Page 3: Terms of Service & Disclaimer -->
+        <section id="terms" class="page-section">
+            <h1>Terms of Service & Disclaimer</h1>
+            <p><em>Last Updated: October 2026</em></p>
+            <p>Welcome to <strong>YouTube Algo</strong> (the "Website"). By accessing or using this Website, you agree to comply with and be bound by the following Terms of Service and Legal Disclaimer.</p>
+
+            <h3>1. Independent Status & YouTube™ Disclaimer</h3>
+            <p><strong>YouTube Algo is an independent educational website and service.</strong></p>
+            <ul>
+                <li>YouTube Algo is <strong>not affiliated, associated, authorized, endorsed by, or in any way officially connected with YouTube, Google LLC, or Alphabet Inc.</strong>, or any of their subsidiaries or affiliates.</li>
+                <li>The official YouTube website can be found at <a href="https://www.youtube.com" target="_blank" rel="noopener" class="text-link">https://www.youtube.com</a>. The name "YouTube" as well as related names, marks, emblems, and images are registered trademarks of their respective owners.</li>
+            </ul>
+
+            <h3>2. Educational & Informational Purposes Only</h3>
+            <p>All content, materials, tools, and insights provided on YouTube Algo are for informational and educational purposes only. While we strive to provide accurate and up-to-date strategies, <strong>we do not guarantee specific channel growth, views, subscribers, revenue, or algorithmic success</strong>.</p>
+
+            <h3>3. Intellectual Property Rights</h3>
+            <p>Unless otherwise stated, YouTube Algo owns the intellectual property rights for all original content, articles, and materials created on this Website. You may access our content for personal, non-commercial use, but you must not republish or duplicate our materials without prior written consent.</p>
+
+            <h3>4. Limitation of Liability</h3>
+            <p>In no event shall YouTube Algo or its operators be liable for any direct, indirect, incidental, or consequential damages resulting from the use or inability to use the information, tools, or services provided on this Website.</p>
+
+            <h3>5. Contact Us</h3>
+            <p>If you have any questions regarding these Terms or Disclaimer, please contact us at <a href="mailto:support@youtubealgo.com" class="text-link">support@youtubealgo.com</a>.</p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-brand">
+                &copy; 2026 YouTube Algo. All rights reserved.
+            </div>
+            <ul class="footer-nav">
+                <li><a onclick="showPage('about')">About Us</a></li>
+                <li><a onclick="showPage('contact')">Contact Us</a></li>
+                <li><a onclick="showPage('terms')">Terms & Disclaimer</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- Tab Switching Script -->
+    <script>
+        function showPage(pageId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(section => section.classList.remove('active'));
+
+            // Show selected section
+            const targetSection = document.getElementById(pageId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+            }
+
+            // Update Header Navigation Active State
+            const navLinks = document.querySelectorAll('.nav-links a');
+            navLinks.forEach(link => link.classList.remove('active'));
+
+            const activeNav = document.getElementById(`nav-${pageId}`);
+            if (activeNav) {
+                activeNav.classList.add('active');
+            }
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    </script>
 </body>
 </html>
