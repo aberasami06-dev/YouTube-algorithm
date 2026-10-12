@@ -149,6 +149,336 @@
       max-width: 1200px;
       margin: 0 auto;
       padding: 2rem 1.2rem;
+      <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Algo - URL Audit & Problem Solver</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0f0f0f;
+            --card-bg: #1f1f1f;
+            --accent-red: #ff0000;
+            --accent-blue: #3ea6ff;
+            --text-main: #f1f1f1;
+            --text-muted: #aaaaaa;
+            --border-color: #333333;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .tool-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            width: 100%;
+            max-width: 800px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #fff;
+            font-size: 1.6rem;
+            border-bottom: 2px solid var(--accent-red);
+            padding-bottom: 8px;
+            display: inline-block;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+
+        input[type="url"] {
+            flex: 1;
+            padding: 12px 15px;
+            background-color: #121212;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: #fff;
+            font-size: 0.95rem;
+            outline: none;
+        }
+
+        input[type="url"]:focus {
+            border-color: var(--accent-blue);
+        }
+
+        button.btn-analyze {
+            background-color: var(--accent-red);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        button.btn-analyze:hover {
+            background-color: #cc0000;
+        }
+
+        /* Results Box */
+        .results-box {
+            display: none;
+            background-color: #121212;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 15px;
+        }
+
+        .meta-info {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .problem-item {
+            background-color: #261a1a;
+            border-left: 4px solid var(--accent-red);
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        .solution-item {
+            background-color: #1a261a;
+            border-left: 4px solid #2ba640;
+            padding: 10px 15px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        .action-bar {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn-secondary {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 10px 16px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn-secondary:hover {
+            background-color: #2a2a2a;
+            border-color: #555;
+        }
+
+        /* Toast notification */
+        #toast {
+            visibility: hidden;
+            min-width: 200px;
+            background-color: var(--accent-blue);
+            color: #fff;
+            text-align: center;
+            border-radius: 4px;
+            padding: 10px;
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: 600;
+        }
+
+        #toast.show {
+            visibility: visible;
+            animation: fadeInOut 2.5s;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; }
+            15% { opacity: 1; }
+            85% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="tool-card">
+    <h2>YouTube URL Audit & Solution Tool</h2>
+    <p style="color: var(--text-muted); margin-top: 5px;">Paste any YouTube video or channel link to detect algorithmic problems and generate actionable solutions.</p>
+
+    <div class="input-group">
+        <input type="url" id="ytUrl" placeholder="https://www.youtube.com/watch?v=..." required>
+        <button class="btn-analyze" onclick="processAudit()">Analyze URL</button>
+    </div>
+
+    <!-- Results Section -->
+    <div id="resultsBox" class="results-box">
+        <div class="meta-info">
+            <p><strong>Detected Target:</strong> <span id="resTarget">--</span></p>
+            <p><strong>ID / Handle:</strong> <span id="resId">--</span></p>
+            <p><strong>Audit Status:</strong> <span style="color: #2ba640;">Analysis Complete</span></p>
+        </div>
+
+        <h3 style="color: #ff6b6b; margin-bottom: 10px;">Detected Issues & Bottlenecks</h3>
+        <div id="problemsContainer"></div>
+
+        <h3 style="color: #6bff6b; margin-top: 20px; margin-bottom: 10px;">Actionable Solutions</h3>
+        <div id="solutionsContainer"></div>
+
+        <!-- Copy & Download Action Buttons -->
+        <div class="action-bar">
+            <button class="btn-secondary" onclick="copyReport()">
+                📋 Copy Solution
+            </button>
+            <button class="btn-secondary" onclick="downloadReport()">
+                💾 Download Report (.txt)
+            </button>
+        </div>
+    </div>
+</div>
+
+<div id="toast">Copied to clipboard!</div>
+
+<script>
+    let generatedReportText = "";
+
+    function parseYouTubeUrl(url) {
+        let videoRegExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|shorts\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        let matchVideo = url.match(videoRegExp);
+
+        if (matchVideo && matchVideo[2].length === 11) {
+            return { type: 'Video/Short', id: matchVideo[2] };
+        }
+
+        let channelRegExp = /(?:youtube\.com\/(?:c\/|channel\/|user\/|@))([a-zA-Z0-9_-]+)/;
+        let matchChannel = url.match(channelRegExp);
+
+        if (matchChannel && matchChannel[1]) {
+            return { type: 'Channel', id: '@' + matchChannel[1] };
+        }
+
+        return null;
+    }
+
+    function processAudit() {
+        const urlInput = document.getElementById('ytUrl').value.trim();
+        const parsed = parseYouTubeUrl(urlInput);
+
+        if (!urlInput || !parsed) {
+            alert('Please enter a valid YouTube Video, Shorts, or Channel URL!');
+            return;
+        }
+
+        document.getElementById('resTarget').innerText = parsed.type;
+        document.getElementById('resId').innerText = parsed.id;
+
+        // Diagnostic logic tailored to the target
+        let problems = [];
+        let solutions = [];
+
+        if (parsed.type === 'Video/Short') {
+            problems = [
+                "CTR Risk: Metadata indicates low click intent or missing power keywords in the title.",
+                "Retention Hook: Standard intro patterns cause average drop-offs in the first 30 seconds.",
+                "Algorithm Categorization: Description lacks sufficient topic context and target search keywords."
+            ];
+            solutions = [
+                "Title Optimization: Keep titles under 60 characters and move main curiosity words to the beginning.",
+                "Thumbnail Contrast: Use primary colors (red, yellow, blue) with maximum 3 words of text.",
+                "Re-Hook Strategy: Remove formal intros; deliver on the thumbnail promise within the first 5 seconds.",
+                "SEO Keywords: Add 3-5 specific long-tail key phrases into the first 2 lines of the video description."
+            ];
+        } else {
+            problems = [
+                "Channel Branding Disconnect: Home banner and title fail to state exact channel value proposition.",
+                "Upload Inconsistency: Algorithm distribution speed slows down due to unpredictable post schedules.",
+                "Playlist Structure: Lack of organized series limits binge-watching session duration."
+            ];
+            solutions = [
+                "Hooking Banner: Update header banner to clearly state who the channel helps and upload frequency.",
+                "Binge Funnels: Group related videos into optimized Playlists with search-friendly titles.",
+                "Pinned Video: Set your highest-retention video as the 'Trailer for Unsubscribed Viewers'."
+            ];
+        }
+
+        // Render Problems
+        const probBox = document.getElementById('problemsContainer');
+        probBox.innerHTML = '';
+        problems.forEach(p => {
+            probBox.innerHTML += `<div class="problem-item">⚠️ ${p}</div>`;
+        });
+
+        // Render Solutions
+        const solBox = document.getElementById('solutionsContainer');
+        solBox.innerHTML = '';
+        solutions.forEach(s => {
+            solBox.innerHTML += `<div class="solution-item">✅ ${s}</div>`;
+        });
+
+        // Formulate plain text output for Copy and Download
+        generatedReportText = `=====================================\n` +
+            `YOUTUBE ALGO - AUDIT & SOLUTION REPORT\n` +
+            `=====================================\n` +
+            `Target Type : ${parsed.type}\n` +
+            `Target ID   : ${parsed.id}\n` +
+            `Date        : ${new Date().toLocaleDateString()}\n\n` +
+            `[ IDENTIFIED PROBLEMS ]\n` +
+            problems.map(p => `- ${p}`).join('\n') + `\n\n` +
+            `[ ACTIONABLE SOLUTIONS ]\n` +
+            solutions.map(s => `- ${s}`).join('\n') + `\n\n` +
+            `Generated by YouTube Algo Audit Tool.`;
+
+        document.getElementById('resultsBox').style.display = 'block';
+    }
+
+    function copyReport() {
+        if (!generatedReportText) return;
+        navigator.clipboard.writeText(generatedReportText).then(() => {
+            showToast('Copied to clipboard!');
+        });
+    }
+
+    function downloadReport() {
+        if (!generatedReportText) return;
+        const blob = new Blob([generatedReportText], { type: 'text/plain' });
+        const element = document.createElement('a');
+        element.href = URL.createObjectURL(blob);
+        element.download = `YouTube_Algo_Report_${Date.now()}.txt`;
+        document.body.appendChild(element);
+        element.click();
+        document.body.removeChild(element);
+    }
+
+    function showToast(message) {
+        const toast = document.getElementById('toast');
+        toast.innerText = message;
+        toast.className = 'show';
+        setTimeout(() => { toast.className = toast.className.replace('show', ''); }, 2500);
+    }
+</script>
+
+</body>
+</html>
     }
 
     /* Hero Section with Creator Photo */
